@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using Ai;
+using UnityEngine;
 
 public abstract class AiAction : ScriptableObject
 {
-    [SerializeField] private Consideration[] _considerations;
     [SerializeField] private string _name;
     [SerializeField] private float _score;
+    [SerializeField] private AiConsideration[] _considerations;
 
-    public Consideration[] Considerations => _considerations;
+    public AiConsideration[] Considerations => _considerations;
     
     public float Score
     {
@@ -14,5 +15,5 @@ public abstract class AiAction : ScriptableObject
         set => _score = Mathf.Clamp01(value);
     }
     
-    public abstract void Execute();
+    public abstract void Execute(AiController ai);
 }

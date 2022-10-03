@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293aea91873d4381bda74178714b6fb8, type: 3}
+  m_Name: SleepAction
+  m_EditorClassIdentifier: 
+  _name: Sleep
+  _score: 0
+  _considerations:
+  - {fileID: 11400000, guid: b6621c2a16a587d40874a54c9c4b42d5, type: 2}

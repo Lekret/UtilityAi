@@ -4715,6 +4715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b85e3afacbc439582b77a71e930d635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controller: {fileID: 653028518}
 --- !u!114 &653028517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4742,7 +4743,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 653028517}
   _brain: {fileID: 653028516}
-  _actions: []
+  _actions:
+  - {fileID: 11400000, guid: ce7271b1bc71014488be7d9ce8f0735a, type: 2}
+  - {fileID: 11400000, guid: fc549f8bcf3fa5b44a33224f000d5535, type: 2}
+  - {fileID: 11400000, guid: e19b4601ecc694347b4cb1dc4072b30b, type: 2}
 --- !u!195 &653028519
 NavMeshAgent:
   m_ObjectHideFlags: 0

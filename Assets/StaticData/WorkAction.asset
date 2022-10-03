@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73030fa6410d470eb1576585475badb7, type: 3}
+  m_Name: WorkAction
+  m_EditorClassIdentifier: 
+  _name: Work
+  _score: 0
+  _considerations:
+  - {fileID: 11400000, guid: 94eca3b31f6a3d34383d4f3227eed677, type: 2}
