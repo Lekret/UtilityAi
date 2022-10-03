@@ -5,10 +5,10 @@ namespace Ai.Actions
     [CreateAssetMenu(menuName = "StaticData/Actions/Eat", fileName = "EatAction")]
     public class EatAction : AiAction
     {
-        public override void Execute(AiController ai)
+        public override void Execute(AiEntity entity)
         {
             Debug.Log("I ate food");
-            ai.OnFinishedAction();
+            entity.OnFinishedAction();
         }
     }
 }

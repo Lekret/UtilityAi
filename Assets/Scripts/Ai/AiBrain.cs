@@ -4,23 +4,23 @@ namespace Ai
 {
     public class AiBrain
     {
-        private readonly AiController _ai;
+        private readonly AiEntity _entity;
         private readonly AiAction[] _actions;
         private AiAction _bestAction;
         private bool _foundBestAction;
 
-        public AiBrain(AiController ai, AiAction[] actions)
+        public AiBrain(AiEntity entity, AiAction[] actions)
         {
-            _ai = ai;
+            _entity = entity;
             _actions = actions;
         }
-        
+
         public void TryExecuteBestAction()
         {
             if (_foundBestAction)
             {
                 _foundBestAction = false;
-                _bestAction.Execute(_ai);
+                _bestAction.Execute(_entity);
             }
         }
         
@@ -59,7 +59,7 @@ namespace Ai
             var score = 1f;
             foreach (var consideration in action.Considerations)
             {
-                var considerationScore = Mathf.Clamp01(consideration.EvaluateScore(_ai));
+                var considerationScore = Mathf.Clamp01(consideration.EvaluateScore(_entity));
                 score *= considerationScore;
                 if (score == 0f)
                     return score;

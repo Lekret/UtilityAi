@@ -8,5 +8,5 @@ public abstract class AiAction : ScriptableObject
 
     public AiConsideration[] Considerations => _considerations;
 
-    public abstract void Execute(AiController ai);
+    public abstract void Execute(AiEntity entity);
 }

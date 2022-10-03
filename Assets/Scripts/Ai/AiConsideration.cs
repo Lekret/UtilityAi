@@ -6,6 +6,6 @@ namespace Ai
     {
         [SerializeField] private string _name;
         
-        public abstract float EvaluateScore(AiController ai);
+        public abstract float EvaluateScore(AiEntity entity);
     }
 }
