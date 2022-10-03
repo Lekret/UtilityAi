@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: EatAction
   m_EditorClassIdentifier: 
   _name: Eat
-  _score: 0
   _considerations:
   - {fileID: 11400000, guid: bcf8ca984822a894683384b26ca0107c, type: 2}

@@ -36,35 +36,40 @@ namespace Ai
             var bestActionIdx = 0;
             for (var i = 0; i < _actions.Length; i++)
             {
-                if (ScoreAction(_actions[i]) > bestScore)
+                var newScore = EvaluateScore(_actions[i]);
+                if (newScore > bestScore)
                 {
                     bestActionIdx = i;
-                    bestScore = _actions[i].Score;
+                    bestScore = newScore;
                 }
             }
-
+            
             _bestAction = _actions[bestActionIdx];
             _foundBestAction = true;
         }
 
-        private float ScoreAction(AiAction action)
+        private float EvaluateScore(AiAction action)
         {
+            if (action.Considerations.Length == 0)
+            {
+                Debug.LogError("Considerations count should be above 0");
+                return 0f;
+            }
+            
             var score = 1f;
             foreach (var consideration in action.Considerations)
             {
-                var considerationScore = consideration.ScoreConsideration(_ai);
+                var considerationScore = consideration.EvaluateScore(_ai);
+                considerationScore = Mathf.Clamp01(considerationScore);
                 score *= considerationScore;
-                if (score == 0)
-                {
-                    action.Score = score;
-                    return action.Score;
-                }
+                if (score == 0f)
+                    return score;
             }
-
-            var modFactor = 1 - 1 / action.Considerations.Length;
-            var makeupValue = (1 - score) * modFactor;
-            action.Score = score + score * makeupValue;
-            return action.Score;
+            
+            var modFactor = 1f - 1f / action.Considerations.Length;
+            var makeupValue = (1f - score) * modFactor;
+            score += score * makeupValue;
+            return score;
         }
     }
 }

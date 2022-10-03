@@ -5,9 +5,9 @@ namespace Ai.Considerations
     [CreateAssetMenu(menuName = "StaticData/Considerations/Energy", fileName = "EnergyConsideration")]
     public class EnergyConsideration : AiConsideration
     {
-        public override float ScoreConsideration(AiController ai)
+        public override float EvaluateScore(AiController ai)
         {
-            return 0;
+            return 0f;
         }
     }
 }

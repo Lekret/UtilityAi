@@ -5,9 +5,9 @@ namespace Ai.Considerations
     [CreateAssetMenu(menuName = "StaticData/Considerations/Hunger", fileName = "HungerConsideration")]
     public class HungerConsideration : AiConsideration
     {
-        public override float ScoreConsideration(AiController ai)
+        public override float EvaluateScore(AiController ai)
         {
-            return 0.2f;
+            return 0.5f;
         }
     }
 }
