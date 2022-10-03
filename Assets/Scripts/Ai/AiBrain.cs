@@ -59,8 +59,7 @@ namespace Ai
             var score = 1f;
             foreach (var consideration in action.Considerations)
             {
-                var considerationScore = consideration.EvaluateScore(_ai);
-                considerationScore = Mathf.Clamp01(considerationScore);
+                var considerationScore = Mathf.Clamp01(consideration.EvaluateScore(_ai));
                 score *= considerationScore;
                 if (score == 0f)
                     return score;
