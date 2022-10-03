@@ -2,44 +2,57 @@
 
 namespace Ai
 {
-    public class AiBrain : MonoBehaviour
+    public class AiBrain
     {
-        [SerializeField] private AiController _controller;
-        
-        public AiAction BestAction { get; private set; }
-        public bool FoundBestAction { get; set; }
+        private readonly AiController _ai;
+        private readonly AiAction[] _actions;
+        private AiAction _bestAction;
+        private bool _foundBestAction;
 
-        private void Update()
+        public AiBrain(AiController ai, AiAction[] actions)
         {
-            if (BestAction == null)
+            _ai = ai;
+            _actions = actions;
+        }
+        
+        public void TryExecuteBestAction()
+        {
+            if (_foundBestAction)
             {
-                UpdateBestAction(_controller, _controller.Actions);
+                _foundBestAction = false;
+                _bestAction.Execute(_ai);
             }
         }
-
-        public void UpdateBestAction(AiController ai, AiAction[] actions)
+        
+        public void UpdateBestAction()
         {
+            if (_actions.Length == 0)
+            {
+                Debug.LogError("Actions count should be above 0");
+                return;
+            }
+            
             var bestScore = 0f;
             var bestActionIdx = 0;
-            for (var i = 0; i < actions.Length; i++)
+            for (var i = 0; i < _actions.Length; i++)
             {
-                if (ScoreAction(ai, actions[i]) > bestScore)
+                if (ScoreAction(_actions[i]) > bestScore)
                 {
                     bestActionIdx = i;
-                    bestScore = actions[i].Score;
+                    bestScore = _actions[i].Score;
                 }
             }
 
-            BestAction = actions[bestActionIdx];
-            FoundBestAction = true;
+            _bestAction = _actions[bestActionIdx];
+            _foundBestAction = true;
         }
 
-        private float ScoreAction(AiController ai, AiAction action)
+        private float ScoreAction(AiAction action)
         {
             var score = 1f;
             foreach (var consideration in action.Considerations)
             {
-                var considerationScore = consideration.ScoreConsideration(ai);
+                var considerationScore = consideration.ScoreConsideration(_ai);
                 score *= considerationScore;
                 if (score == 0)
                 {
