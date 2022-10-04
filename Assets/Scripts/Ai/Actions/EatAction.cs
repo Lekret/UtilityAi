@@ -7,7 +7,6 @@ namespace Ai.Actions
     {
         public override void Execute(AiEntity entity)
         {
-            Debug.Log("I ate food");
             entity.OnFinishedAction();
         }
     }

@@ -7,7 +7,7 @@ namespace Ai.Considerations
     {
         public override float EvaluateScore(AiEntity entity)
         {
-            return 0f;
+            return 1f;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Environment;
 using UnityEngine;
 
 namespace Ai.Actions
@@ -11,18 +12,19 @@ namespace Ai.Actions
             entity.StartCoroutine(WorkForTime(entity, 2));
         }
         
-        private IEnumerator WorkForTime(AiEntity entity, float time)
+        private static IEnumerator WorkForTime(AiEntity entity, float time)
         {
-            Debug.Log("Mining started");
-        
-            var counter = time;
-            while (counter > 0)
+            var house = FindObjectOfType<Wood>();
+            entity.NavMeshAgent.SetDestination(house.transform.position);
+            
+            while (entity.NavMeshAgent.remainingDistance > Vector3.kEpsilon)
             {
-                counter -= Time.deltaTime;
                 yield return null;
             }
 
-            Debug.Log("Mining completed");
+            yield return new WaitForSeconds(time);
+
+            Debug.Log("Work completed");
             entity.OnFinishedAction();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Environment;
 using UnityEngine;
 
 namespace Ai.Actions
@@ -11,16 +12,17 @@ namespace Ai.Actions
             entity.StartCoroutine(SleepForTime(entity, 3));
         }
         
-        private IEnumerator SleepForTime(AiEntity entity, float time)
+        private static IEnumerator SleepForTime(AiEntity entity, float time)
         {
-            Debug.Log("Sleep started");
-        
-            var counter = time;
-            while (counter > 0)
+            var house = FindObjectOfType<House>();
+            entity.NavMeshAgent.SetDestination(house.transform.position);
+            
+            while (entity.NavMeshAgent.remainingDistance > Vector3.kEpsilon)
             {
-                counter -= Time.deltaTime;
                 yield return null;
             }
+
+            yield return new WaitForSeconds(time);
 
             Debug.Log("Sleep completed");
             entity.OnFinishedAction();

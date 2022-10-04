@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: WorkAction
   m_EditorClassIdentifier: 
   _name: Work
-  _score: 0
   _considerations:
   - {fileID: 11400000, guid: 94eca3b31f6a3d34383d4f3227eed677, type: 2}
