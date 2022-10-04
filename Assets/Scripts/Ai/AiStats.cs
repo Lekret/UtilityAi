@@ -1,11 +1,14 @@
-﻿namespace Ai
+﻿using System;
+
+namespace Ai
 {
+    [Serializable]
     public class AiStats
     {
-        public int Hunger { get; set; }
-        public int MaxHunger { get; set; }
-        public int Resources { get; set; }
-        public int Energy { get; set; }
-        public int MaxEnergy { get; set; }
+        public int Hunger;
+        public int MaxHunger;
+        public int Resources;
+        public int Energy;
+        public int MaxEnergy;
     }
 }

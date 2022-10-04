@@ -6,11 +6,13 @@ namespace Ai
 {
     public class AiEntity : MonoBehaviour
     {
+        [SerializeField] private AiStats _stats;
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private AiAction[] _actions;
 
         private AiBrain _brain;
-        
+
+        public AiStats Stats => _stats;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
         
         private void Awake()
