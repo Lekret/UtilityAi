@@ -9,8 +9,10 @@ namespace Ai
 
         public AiConsideration[] Considerations => _considerations;
 
+        public virtual void Init() { }
+        
         public abstract void Execute(AiEntity entity);
-
+        
         public static AiAction Copy(AiAction action)
         {
             var instance = Instantiate(action);

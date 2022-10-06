@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Environment;
+using Infrastructure;
 using UnityEngine;
 
 namespace Ai.Actions
@@ -7,24 +8,33 @@ namespace Ai.Actions
     [CreateAssetMenu(menuName = "StaticData/Actions/Sleep", fileName = "SleepAction")]
     public class SleepAction : AiAction
     {
+        public float SleepTime;
+        public int EnergyGain;
+        
+        private Location _location;
+
+        public override void Init()
+        {
+            _location = Services.Get<Location>();
+        }
+
         public override void Execute(AiEntity entity)
         {
-            entity.StartCoroutine(SleepForTime(entity, 3));
+            entity.StartCoroutine(Sleep(entity));
         }
         
-        private static IEnumerator SleepForTime(AiEntity entity, float time)
+        private IEnumerator Sleep(AiEntity entity)
         {
-            var house = FindObjectOfType<House>();
-            entity.NavMeshAgent.SetDestination(house.transform.position);
+            entity.NavMeshAgent.SetDestination(_location.House.transform.position);
+            yield return null;
             
             while (entity.NavMeshAgent.remainingDistance > Vector3.kEpsilon)
             {
                 yield return null;
             }
 
-            yield return new WaitForSeconds(time);
-
-            Debug.Log("Sleep completed");
+            yield return new WaitForSeconds(SleepTime);
+            entity.Stats.ChangeEnergy(EnergyGain);
             entity.OnFinishedAction();
         }
     }

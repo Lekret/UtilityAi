@@ -15,3 +15,5 @@ MonoBehaviour:
   _name: Work
   _considerations:
   - {fileID: 11400000, guid: 94eca3b31f6a3d34383d4f3227eed677, type: 2}
+  WorkTime: 3
+  MoneyGain: 20

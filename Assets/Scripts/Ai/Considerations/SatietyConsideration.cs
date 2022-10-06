@@ -3,11 +3,13 @@
 namespace Ai.Considerations
 {
     [CreateAssetMenu(menuName = "StaticData/Considerations/Hunger", fileName = "HungerConsideration")]
-    public class HungerConsideration : AiConsideration
+    public class SatietyConsideration : AiConsideration
     {
+        public AnimationCurve ResponseCurve;
+        
         public override float EvaluateScore(AiEntity entity)
         {
-            return 0.5f;
+            return ResponseCurve.Evaluate((float) entity.Stats.Satiety / entity.Stats.MaxSatiety);
         }
     }
 }

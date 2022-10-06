@@ -15,3 +15,5 @@ MonoBehaviour:
   _name: Eat
   _considerations:
   - {fileID: 11400000, guid: bcf8ca984822a894683384b26ca0107c, type: 2}
+  EatTime: 2
+  SatietyGain: 10

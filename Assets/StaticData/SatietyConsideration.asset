@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9954ffd30a3c44b7bc47f68989347a5a, type: 3}
-  m_Name: EnergyConsideration
+  m_Script: {fileID: 11500000, guid: 521a4725390c48cb88179ce3f4ffc5e2, type: 3}
+  m_Name: SatietyConsideration
   m_EditorClassIdentifier: 
   ResponseCurve:
     serializedVersion: 2
@@ -24,6 +24,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.5143865
+      value: 0.72523105
+      inSlope: -1.7644424
+      outSlope: -1.7644424
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.14236324
     - serializedVersion: 3
       time: 0.9974365
       value: -0.006126404

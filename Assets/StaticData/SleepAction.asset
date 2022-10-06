@@ -15,3 +15,5 @@ MonoBehaviour:
   _name: Sleep
   _considerations:
   - {fileID: 11400000, guid: b6621c2a16a587d40874a54c9c4b42d5, type: 2}
+  SleepTime: 5
+  EnergyGain: 20
