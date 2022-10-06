@@ -8,7 +8,6 @@ namespace Components
     {
         public int Satiety;
         public int MaxSatiety;
-        public int Resources;
         public int Energy;
         public int MaxEnergy;
         public int Money;
