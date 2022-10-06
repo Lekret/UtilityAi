@@ -1,4 +1,6 @@
 ﻿using System;
+using Infrastructure;
+using SimpleEcs;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,16 +13,16 @@ namespace Ai
         [SerializeField] private AiAction[] _actions;
 
         private AiBrain _brain;
-
-        public AiStats Stats => _stats;
-        public NavMeshAgent NavMeshAgent => _navMeshAgent;
         
         private void Awake()
         {
             var actions = Array.ConvertAll(_actions, AiAction.Copy);
+            var entity = Services.Get<EcsManager>().CreateEntity();
+            entity
+                .Set(_stats)
+                .Set(_navMeshAgent)
+                .Set(new AiBrain(entity, actions));
             InitializeActions(actions);
-            _brain = new AiBrain(this, actions);
-            _brain.UpdateBestAction();
         }
 
         private static void InitializeActions(AiAction[] actions)
@@ -33,16 +35,6 @@ namespace Ai
                 }
                 act.Init();
             }
-        }
-
-        private void Update()
-        {
-            _brain.TryExecuteBestAction();
-        }
-
-        public void OnFinishedAction()
-        {
-            _brain.UpdateBestAction();
         }
     }
 }

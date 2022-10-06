@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SimpleEcs;
+using UnityEngine;
 
 namespace Ai
 {
@@ -6,6 +7,6 @@ namespace Ai
     {
         public virtual void Init() { }
 
-        public abstract float EvaluateScore(AiEntity entity);
+        public abstract float EvaluateScore(Entity entity);
     }
 }

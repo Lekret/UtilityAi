@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SimpleEcs;
+using UnityEngine;
 
 namespace Ai.Considerations
 {
@@ -8,9 +9,13 @@ namespace Ai.Considerations
         public int MaxMoney;
         public AnimationCurve ResponseCurve;
         
-        public override float EvaluateScore(AiEntity entity)
+        public override float EvaluateScore(Entity entity)
         {
-            return ResponseCurve.Evaluate((float) entity.Stats.Money / MaxMoney);
+            if (entity.TryGet(out AiStats stats))
+            {
+                return ResponseCurve.Evaluate((float) stats.Money / MaxMoney);
+            }
+            return 0;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.Collections;
-using Environment;
 using Infrastructure;
+using Logic;
+using SimpleEcs;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Ai.Actions
 {
@@ -11,31 +13,43 @@ namespace Ai.Actions
         public float EatTime;
         public int SatietyGain;
 
-        private Location _location;
+        private EcsFilter _foods;
+        private ICoroutineRunner _coroutineRunner;
 
         public override void Init()
         {
-            _location = Services.Get<Location>();
+            _coroutineRunner = Services.Get<ICoroutineRunner>();
+            _foods = Services.Get<EcsManager>()
+                .Filter()
+                .Inc<Food>()
+                .Inc<Transform>()
+                .End();
         }
 
-        public override void Execute(AiEntity entity)
+        public override void Execute(Entity entity)
         {
-            entity.StartCoroutine(Eat(entity));
+            _coroutineRunner.StartCoroutine(Eat(entity));
         }
         
-        private IEnumerator Eat(AiEntity entity)
+        private IEnumerator Eat(Entity entity)
         {
-            entity.NavMeshAgent.SetDestination(_location.Food.transform.position);
+            var navMeshAgent = entity.Get<NavMeshAgent>();
+            var stats = entity.Get<AiStats>();
+            var brain = entity.Get<AiBrain>();
+            var food = _foods.GetSingle();
+            var foodTransform = food.Get<Transform>();
+            
+            navMeshAgent.SetDestination(foodTransform.position);
             yield return null;
             
-            while (entity.NavMeshAgent.remainingDistance > Vector3.kEpsilon)
+            while (navMeshAgent.remainingDistance > Vector3.kEpsilon)
             {
                 yield return null;
             }
 
             yield return new WaitForSeconds(EatTime);
-            entity.Stats.ChangeSatiety(SatietyGain);
-            entity.OnFinishedAction();
+            stats.ChangeSatiety(SatietyGain);
+            brain.FindNewAction();
         }
     }
 }

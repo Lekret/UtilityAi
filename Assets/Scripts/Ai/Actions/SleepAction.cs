@@ -1,7 +1,9 @@
 ﻿using System.Collections;
-using Environment;
 using Infrastructure;
+using Logic;
+using SimpleEcs;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Ai.Actions
 {
@@ -11,31 +13,43 @@ namespace Ai.Actions
         public float SleepTime;
         public int EnergyGain;
         
-        private Location _location;
+        private EcsFilter _beds;
+        private ICoroutineRunner _coroutineRunner;
 
         public override void Init()
         {
-            _location = Services.Get<Location>();
+            _coroutineRunner = Services.Get<ICoroutineRunner>();
+            _beds = Services.Get<EcsManager>()
+                .Filter()
+                .Inc<Bed>()
+                .Inc<Transform>()
+                .End();
         }
 
-        public override void Execute(AiEntity entity)
+        public override void Execute(Entity entity)
         {
-            entity.StartCoroutine(Sleep(entity));
+            _coroutineRunner.StartCoroutine(Sleep(entity));
         }
         
-        private IEnumerator Sleep(AiEntity entity)
+        private IEnumerator Sleep(Entity entity)
         {
-            entity.NavMeshAgent.SetDestination(_location.House.transform.position);
+            var navMeshAgent = entity.Get<NavMeshAgent>();
+            var stats = entity.Get<AiStats>();
+            var brain = entity.Get<AiBrain>();
+            var bed = _beds.GetSingle();
+            var bedTransform = bed.Get<Transform>();
+            
+            navMeshAgent.SetDestination(bedTransform.position);
             yield return null;
             
-            while (entity.NavMeshAgent.remainingDistance > Vector3.kEpsilon)
+            while (navMeshAgent.remainingDistance > Vector3.kEpsilon)
             {
                 yield return null;
             }
 
             yield return new WaitForSeconds(SleepTime);
-            entity.Stats.ChangeEnergy(EnergyGain);
-            entity.OnFinishedAction();
+            stats.ChangeEnergy(EnergyGain);
+            brain.FindNewAction();
         }
     }
 }

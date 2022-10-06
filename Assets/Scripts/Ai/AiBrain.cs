@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+﻿using SimpleEcs;
+using UnityEngine;
 
 namespace Ai
 {
     public class AiBrain
     {
-        private readonly AiEntity _entity;
+        private readonly Entity _entity;
         private readonly AiAction[] _actions;
         private AiAction _bestAction;
         private bool _foundBestAction;
 
-        public AiBrain(AiEntity entity, AiAction[] actions)
+        public AiBrain(Entity entity, AiAction[] actions)
         {
             _entity = entity;
             _actions = actions;
@@ -24,7 +25,7 @@ namespace Ai
             }
         }
         
-        public void UpdateBestAction()
+        public void FindNewAction()
         {
             if (_actions.Length == 0)
             {

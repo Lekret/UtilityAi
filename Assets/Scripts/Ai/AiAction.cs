@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SimpleEcs;
+using UnityEngine;
 
 namespace Ai
 {
@@ -11,7 +12,7 @@ namespace Ai
 
         public virtual void Init() { }
         
-        public abstract void Execute(AiEntity entity);
+        public abstract void Execute(Entity entity);
         
         public static AiAction Copy(AiAction action)
         {

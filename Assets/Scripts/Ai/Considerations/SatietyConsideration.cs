@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SimpleEcs;
+using UnityEngine;
 
 namespace Ai.Considerations
 {
@@ -7,9 +8,13 @@ namespace Ai.Considerations
     {
         public AnimationCurve ResponseCurve;
         
-        public override float EvaluateScore(AiEntity entity)
+        public override float EvaluateScore(Entity entity)
         {
-            return ResponseCurve.Evaluate((float) entity.Stats.Satiety / entity.Stats.MaxSatiety);
+            if (entity.TryGet(out AiStats stats))
+            {
+                return ResponseCurve.Evaluate((float) stats.Satiety / stats.MaxSatiety);
+            }
+            return 0;
         }
     }
 }

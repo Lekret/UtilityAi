@@ -9,7 +9,7 @@ namespace Infrastructure
         void Set<T>(T service) where T : class;
     }
     
-    public class Services
+    public static class Services
     {
         public static IServices Implementation { get; set; } = new DefaultServices();
         
