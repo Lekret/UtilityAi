@@ -4758,6 +4758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 653028519}
+  _brainConfig: {fileID: 11400000, guid: b03f943c67baa1345a3cbc43419fc8c6, type: 2}
   _stats:
     Satiety: 100
     MaxSatiety: 100
@@ -4765,10 +4766,6 @@ MonoBehaviour:
     Energy: 100
     MaxEnergy: 100
     Money: 0
-  _actions:
-  - {fileID: 11400000, guid: ce7271b1bc71014488be7d9ce8f0735a, type: 2}
-  - {fileID: 11400000, guid: fc549f8bcf3fa5b44a33224f000d5535, type: 2}
-  - {fileID: 11400000, guid: e19b4601ecc694347b4cb1dc4072b30b, type: 2}
 --- !u!195 &653028519
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10434,7 +10431,7 @@ GameObject:
   m_Layer: 0
   m_Name: Wood
   m_TagString: Untagged
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

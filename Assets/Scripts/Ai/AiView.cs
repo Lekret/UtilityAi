@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Configuration;
 using Infrastructure;
 using SimpleEcs;
 using UnityEngine;
@@ -6,17 +6,15 @@ using UnityEngine.AI;
 
 namespace Ai
 {
-    public class AiEntity : MonoBehaviour
+    public class AiView : MonoBehaviour
     {
         [SerializeField] private NavMeshAgent _navMeshAgent;
+        [SerializeField] private AiBrainConfig _brainConfig;
         [SerializeField] private AiStats _stats;
-        [SerializeField] private AiAction[] _actions;
-
-        private AiBrain _brain;
         
         private void Awake()
         {
-            var actions = Array.ConvertAll(_actions, AiAction.Copy);
+            var actions = _brainConfig.GetActionsCopy();
             var entity = Services.Get<EcsManager>().CreateEntity();
             entity
                 .Set(_stats)
