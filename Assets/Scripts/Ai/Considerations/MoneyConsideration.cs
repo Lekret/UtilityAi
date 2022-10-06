@@ -1,4 +1,5 @@
-﻿using SimpleEcs;
+﻿using Components;
+using SimpleEcs;
 using UnityEngine;
 
 namespace Ai.Considerations

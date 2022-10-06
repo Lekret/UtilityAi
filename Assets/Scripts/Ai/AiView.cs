@@ -1,4 +1,5 @@
-﻿using Configuration;
+﻿using Components;
+using Configuration;
 using Infrastructure;
 using SimpleEcs;
 using UnityEngine;

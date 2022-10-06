@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Ai
+namespace Components
 {
     [Serializable]
     public class AiStats
