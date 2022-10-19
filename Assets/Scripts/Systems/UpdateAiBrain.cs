@@ -1,12 +1,12 @@
 ﻿using Ai;
 using Infrastructure;
-using SimpleEcs;
+using Lekret.Ecs;
 
 namespace Systems
 {
-    public class UpdateAiBrain : IInitSystem, ITickSystem
+    public class UpdateAiBrain : IInitSystem, IUpdateSystem
     {
-        private readonly EcsFilter _filter;
+        private readonly Filter _filter;
 
         public UpdateAiBrain()
         {
@@ -24,7 +24,7 @@ namespace Systems
             }
         }
         
-        public void Tick()
+        public void Update()
         {
             foreach (var entity in _filter)
             {

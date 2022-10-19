@@ -1,15 +1,15 @@
 ﻿using Components;
 using Infrastructure;
+using Lekret.Ecs;
 using Logic;
-using SimpleEcs;
 using UnityEngine;
 
 namespace Systems
 {
-    public class DecreaseStats : ITickSystem
+    public class DecreaseStats : IUpdateSystem
     {
         private readonly Timer _timer = new Timer(1);
-        private readonly EcsFilter _stats;
+        private readonly Filter _stats;
 
         public DecreaseStats()
         {
@@ -19,7 +19,7 @@ namespace Systems
                 .End();
         }
 
-        public void Tick()
+        public void Update()
         {
             if (!_timer.Tick(Time.deltaTime))
                 return;

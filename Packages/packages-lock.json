@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "com.lekret.simple-ecs": {
-      "version": "https://github.com/Lekret/SimpleEcs.git",
+    "com.lekret.ecs": {
+      "version": "https://github.com/Lekret/Ecs.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "dfd21ba5ffd20ae9443aa5c48ebc6a82cf20051d"
+      "hash": "31ce85bb677dd6cfc29b3cc1d3e3ef2b1d7b1a3a"
     },
     "com.unity.collab-proxy": {
       "version": "1.15.17",

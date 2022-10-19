@@ -1,4 +1,4 @@
-﻿using SimpleEcs;
+﻿using Lekret.Ecs;
 using UnityEngine;
 
 namespace Ai

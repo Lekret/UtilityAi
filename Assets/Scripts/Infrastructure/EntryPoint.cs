@@ -1,5 +1,5 @@
-﻿using Logic;
-using SimpleEcs;
+﻿using Lekret.Ecs;
+using Logic;
 using Systems;
 using UnityEngine;
 
@@ -29,7 +29,22 @@ namespace Infrastructure
 
         private void Update()
         {
-            _systems.Tick();
+            _systems.Update();
+        }
+
+        private void FixedUpdate()
+        {
+            _systems.FixedUpdate();
+        }
+
+        private void LateUpdate()
+        {
+            _systems.LateUpdate();
+        }
+
+        private void OnDestroy()
+        {
+            _systems.Destroy();
         }
     }
 }

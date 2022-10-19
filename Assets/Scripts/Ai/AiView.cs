@@ -1,7 +1,7 @@
 ﻿using Components;
 using Configuration;
 using Infrastructure;
-using SimpleEcs;
+using Lekret.Ecs;
 using UnityEngine;
 using UnityEngine.AI;
 

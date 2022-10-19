@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using Components;
 using Infrastructure;
+using Lekret.Ecs;
 using Logic;
-using SimpleEcs;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +14,7 @@ namespace Ai.Actions
         public float EatTime;
         public int SatietyGain;
 
-        private EcsFilter _foods;
+        private Filter _foods;
         private ICoroutineRunner _coroutineRunner;
 
         public override void Init()

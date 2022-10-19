@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using Components;
 using Infrastructure;
+using Lekret.Ecs;
 using Logic;
-using SimpleEcs;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +14,7 @@ namespace Ai.Actions
         public float SleepTime;
         public int EnergyGain;
         
-        private EcsFilter _beds;
+        private Filter _beds;
         private ICoroutineRunner _coroutineRunner;
 
         public override void Init()

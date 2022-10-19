@@ -1,5 +1,5 @@
 ﻿using Infrastructure;
-using SimpleEcs;
+using Lekret.Ecs;
 using UnityEngine;
 
 namespace Logic
