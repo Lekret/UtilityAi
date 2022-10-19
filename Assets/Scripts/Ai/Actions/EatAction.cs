@@ -21,7 +21,6 @@ namespace Ai.Actions
         {
             _coroutineRunner = Services.Get<ICoroutineRunner>();
             _foods = Services.Get<EcsManager>()
-                .Filter()
                 .Inc<Food>()
                 .Inc<Transform>()
                 .End();

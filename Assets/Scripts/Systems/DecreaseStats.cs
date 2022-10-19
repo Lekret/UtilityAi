@@ -14,7 +14,6 @@ namespace Systems
         public DecreaseStats()
         {
             _stats = Services.Get<EcsManager>()
-                .Filter()
                 .Inc<AiStats>()
                 .End();
         }

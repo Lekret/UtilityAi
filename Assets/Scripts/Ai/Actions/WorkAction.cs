@@ -21,7 +21,6 @@ namespace Ai.Actions
         {
             _coroutineRunner = Services.Get<ICoroutineRunner>();
             _woods = Services.Get<EcsManager>()
-                .Filter()
                 .Inc<Wood>()
                 .Inc<Transform>()
                 .End();

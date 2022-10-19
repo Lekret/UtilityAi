@@ -21,7 +21,6 @@ namespace Ai.Actions
         {
             _coroutineRunner = Services.Get<ICoroutineRunner>();
             _beds = Services.Get<EcsManager>()
-                .Filter()
                 .Inc<Bed>()
                 .Inc<Transform>()
                 .End();
