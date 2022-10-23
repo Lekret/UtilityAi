@@ -21,9 +21,7 @@ namespace Ai.Actions
         {
             _coroutineRunner = Services.Get<ICoroutineRunner>();
             _foods = Services.Get<EcsManager>()
-                .Inc<Food>()
-                .Inc<Transform>()
-                .End();
+                .Filter(Mask.With<Food>().With<Transform>());
         }
 
         public override void Execute(Entity entity)

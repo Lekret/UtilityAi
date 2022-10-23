@@ -8,19 +8,17 @@ namespace Systems
 {
     public class DecreaseStats : IUpdateSystem
     {
-        private readonly Timer _timer = new Timer(1);
+        private readonly IntervalTimer _intervalTimer = new IntervalTimer(1);
         private readonly Filter _stats;
 
         public DecreaseStats()
         {
-            _stats = Services.Get<EcsManager>()
-                .Inc<AiStats>()
-                .End();
+            _stats = Services.Get<EcsManager>().Filter(Mask.With<AiStats>());
         }
 
         public void Update()
         {
-            if (!_timer.Tick(Time.deltaTime))
+            if (!_intervalTimer.Tick(Time.deltaTime))
                 return;
             
             foreach (var entity in _stats)

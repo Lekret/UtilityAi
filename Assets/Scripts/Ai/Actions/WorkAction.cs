@@ -21,9 +21,7 @@ namespace Ai.Actions
         {
             _coroutineRunner = Services.Get<ICoroutineRunner>();
             _woods = Services.Get<EcsManager>()
-                .Inc<Wood>()
-                .Inc<Transform>()
-                .End();
+                .Filter(Mask.With<Wood>().With<Transform>());
         }
 
         public override void Execute(Entity entity)

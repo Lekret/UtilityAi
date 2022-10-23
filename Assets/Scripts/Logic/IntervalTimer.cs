@@ -1,11 +1,11 @@
 ﻿namespace Logic
 {
-    public class Timer
+    public class IntervalTimer
     {
         private readonly float _time;
         private float _currentTime;
         
-        public Timer(float time)
+        public IntervalTimer(float time)
         {
             _time = time;
             _currentTime = time;

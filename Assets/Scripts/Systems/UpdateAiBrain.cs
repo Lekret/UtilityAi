@@ -11,8 +11,7 @@ namespace Systems
         public UpdateAiBrain()
         {
             _filter = Services.Get<EcsManager>()
-                .Inc<AiBrain>()
-                .End();
+                .Filter(Mask.With<AiBrain>());
         }
         
         public void Init()

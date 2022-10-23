@@ -1,5 +1,6 @@
 ﻿using Lekret.Ecs;
 using Logic;
+using SimpleEcs.Runtime;
 using Systems;
 using UnityEngine;
 
@@ -14,10 +15,11 @@ namespace Infrastructure
         
         private void Awake()
         {
-            Services.Set(new EcsManager());
+            var manager = new EcsManager();
+            Services.Set(manager);
             Services.Set(SceneData);
             Services.Set<ICoroutineRunner>(this);
-            _systems = new EcsSystems()
+            _systems = new EcsSystemsExtended(manager)
                 .Add(new UpdateAiBrain())
                 .Add(new DecreaseStats());
         }
